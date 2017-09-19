@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Line</title>
+
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="body">
+                <h1>Line
+                    <a v-show="show_next" v-on:click="goto_next()">          <i class="fa fa-arrow-right"></i></a>
+                    <a                    v-on:click="show_add_model = true"><i class="fa fa-plus"></i></a>
+                </h1>
+
+                <ul>
+                    <li v-if="reservations.length == 0">No one in line yet!</li>
+                    <li v-for="reservation in reservations" v-bind:class="reservation.state">
+                        <h2>{{reservation.name}}</h2>
+                        <p>
+                            {{reservation.state}}
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="model" v-show="show_add_model">
+                <form v-on:submit.prevent="add_model" action="index.html" method="post">
+                    <h1>Join the Line</h1>
+
+                    <!-- <label for="name">Name</label><br> -->
+                    <input name="name" id="name" placeholder="Name or Something else"/>
+
+                    <br>
+                    <br>
+                    <input type="submit" name="submit" id="submit"/>
+                    <a v-on:click="show_add_model = false">Nevermind</a>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/vue.js"></script>
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>
